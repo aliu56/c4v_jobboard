@@ -1,0 +1,16 @@
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<h1>{{ company.company_name }}</h1>
+
+<p> Company description</p>
+
+<h2>Job offers:</h2>
+
+  {% for job in company.job_set.all %}
+    <li>
+        {{ job.job_name }} - {{ job.country }}, {{ job.city }} - <a href = {{ job.offer_url }} >Read more</a>
+    </li>
+  {% endfor %}
+<br>
+<a href = "{% url 'jobboard:index' %}"> Back to Homepage </a> <br>

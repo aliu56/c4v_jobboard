@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | C4V Jobboard {% endblock %}
+
+
+{% block branding %}
+<h1 id="site-name">
+    <img src="{% static 'C4Ventures_Logo.png' %}" height="100px" alt="C4 Ventures Logo" title="C4V Logo">
+    <a href="{% url 'admin:index' %}">C4 Job board</a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

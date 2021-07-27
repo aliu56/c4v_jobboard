@@ -1,0 +1,26 @@
+
+<br>
+<form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'jobboard:search' %}" >
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search...">
+            <button class="btn btn btn-outline-info my-2 my-sm-0" type="submit"> Search </button>
+</form>
+<br>
+
+<h1>Results for "TEST"</h1>
+<br>
+
+ {% if all_search_results %}
+    <ul>
+    {% for job in all_search_results %}
+        <li>
+            <a href = {{ job.company.company_website_url }} > <img src="{{ job.company.logo }}"> {{ job.company.company_name }} </a>
+            <br> {{job.job_name}}
+            <br> {{job.city}}, {{job.country}} - <a href = {{ job.offer_url }} >Read more</a> <br>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+
+    <p>No results found.</p>
+{% endif %}

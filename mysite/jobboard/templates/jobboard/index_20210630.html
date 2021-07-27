@@ -1,0 +1,42 @@
+ <h1>This is the home page</h1>
+
+
+ <h2><a href = "{% url 'jobboard:portfolio' %}"> Portfolio View </a></h2>
+ <br>
+ <br>
+<form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'jobboard:index' %}" >
+    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search...">
+    <button class="btn btn btn-outline-info my-2 my-sm-0" type="submit"> Go </button>
+</form>
+
+ <div class="form-group col-md-4">
+            <select id="company" class="form-control" name="company">
+              <option selected>Company</option>
+              {% for company in companies %}
+              <option value="{{ company_name }}">{{ company.company_name }}</option>
+              {% endfor %}
+            </select>
+ </div>
+
+<br>
+ <br>
+ <h2><p>JOBS</p></h2>
+
+ {% if queryset %}
+    <ul>
+    {% for job in queryset %}
+        <li>
+            <a href = {{ job.company.company_website_url }} > <img src="{{ job.company.logo }}"> </a> - <a href = "{% url 'jobboard:company' job.company.id %}" > {{ job.company.company_name }} </a>
+            - {{job.job_name}}
+            <br> {{job.city}}, {{job.country}} - <a href = {{ job.offer_url }} >Read more</a> <br>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+    <a href = "{% url 'jobboard:index' %}"> << Back </a> <br>
+
+{% endif %}
+
+

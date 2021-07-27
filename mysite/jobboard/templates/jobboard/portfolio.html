@@ -1,0 +1,30 @@
+ <h1>Portfolio View</h1>
+
+ <b><p>COMPANIES</p></b>
+
+ {% if company_list %}
+    <ul>
+    {% for company in company_list %}
+        <li>
+            <a href = "{% url 'jobboard:company' company.id %}" > {{ company.company_name }} </a> <br>
+            <img src="{{ company.logo }}">
+            Description <br>
+            <a href = {{ company.company_website_url }} > Website </a> <br>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Empty list.</p>
+{% endif %}
+
+
+ Remark: the logos won't display because need to specify the ROOT of the images <br>
+<br>
+<br>
+
+ <a href = "{% url 'jobboard:index' %}"> Back to Homepage </a> <br>
+
+
+
+
