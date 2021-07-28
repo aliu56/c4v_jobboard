@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <title>C4 Ventures Jobboard</title>
+        <link href=“css/style_index.css” type=“text/css” rel=“stylesheet” />
+    </head>
+
+    <body>
+<h1>This is the home page</h1>
+
+ <div class="ais-InstantSearch">
+  <h1>InstantSearch.js e-commerce demo</h1>
+
+  <div class="right-panel">
+    <div id="searchbox"></div>
+    <div id="hits"></div>
+    <div id="pagination"></div>
+  </div>
+</div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>-->
+
+ <br>
+ <h2><p>JOBS</p></h2>
+
+ {% if job_list %}
+    <ul>
+    {% for job in job_list %}
+        <li>
+            <a href = {{ job.company.company_website_url }} > <img src="{{ job.company.logo }}"> </a> - <a href = "{% url 'jobboard:company' job.company.id %}" > {{ job.company.company_name }} </a>
+            - {{job.job_name}}
+            <br> {{job.city}}, {{job.country}} - <a href = {{ job.offer_url }} >Read more</a> <br>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+    <a href = "{% url 'jobboard:index' %}"> << Back </a> <br>
+
+{% endif %}
+
+    </body>
+</html>
+
